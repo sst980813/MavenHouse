@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.ResourcerMapper">
+	<select id="queryResourceByPar" parameterType="com.ssm.pojo.Resourcepojo" resultType="com.ssm.pojo.Resourcepojo">
+		SELECT 
+			 *
+		FROM 
+			resource
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="ifgood != null ">
+				AND ifgood = #{ifgood}
+			</if>
+		</trim>
+			
+	</select>
+	
+	<insert id="insertResource" parameterType="com.ssm.pojo.Resourcepojo">
+		INSERT INTO  resource 
+			(
+	         title,
+	         price,
+	         renttype,
+	         housetype,
+	         floor,
+	         area,
+	         orient,
+	         village,
+	         location,
+             longitude,
+	         latitude,
+	         img,
+	         introduce,
+	         subway
+			)
+		VALUES
+			(
+				#{title},
+				#(price),
+				#{renttype},
+				#{housetype},
+				#{floor},
+				#{area},
+				#{orient},
+				#{village},
+				#{location},
+				#{longitude},
+				#{latitude},
+				#{img},
+				#{introduce},
+				#{subway}
+			)
+	</insert>
+	<select id="queryResource" resultType="com.ssm.pojo.Resourcepojo">
+		SELECT 
+			  *
+		FROM 
+			resource
+	</select>
+
+</mapper>
